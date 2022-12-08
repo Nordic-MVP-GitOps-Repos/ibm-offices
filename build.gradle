@@ -9,6 +9,7 @@ repositories {
 }
 
 dependencies {
+    implementation("io.quarkus:quarkus-openshift")
     implementation 'io.quarkus:quarkus-container-image-openshift'
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
     implementation 'io.quarkus:quarkus-resteasy-reactive-jackson'
