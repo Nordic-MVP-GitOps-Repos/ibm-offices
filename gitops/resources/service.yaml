@@ -3,7 +3,7 @@ apiVersion: v1
 metadata:
   name: offices
   namespace: ibmoffices
-    app: offices
+  app: offices
 spec:
   ports:
     - name: 8080-tcp
