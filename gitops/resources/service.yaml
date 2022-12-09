@@ -24,5 +24,3 @@ spec:
   sessionAffinity: None
   selector:
     deployment: offices
-status:
-  loadBalancer: {}
