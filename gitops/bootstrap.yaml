@@ -24,7 +24,9 @@ spec:
     server: https://kubernetes.default.svc
   project: ibmoffices
   source:
-    path: ./gitops
+    directory:
+      recurse: true
+    path: ./gitops/resources
     repoURL: https://github.com/Nordic-MVP-GitOps-Repos/ibmoffices.git
     targetRevision: main
   syncPolicy:
