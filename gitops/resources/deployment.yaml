@@ -18,7 +18,7 @@ spec:
       containers:
       - name: ibmoffices
         image: >-
-            image-registry.openshift-image-registry.svc:5000/quarkus/ibmoffices@sha256:4e52e96573d67ac5dd150b971baa8c03ad789e5b099b224b719cfe0419933932
+            image-registry.openshift-image-registry.svc:5000/ibmoffices/ibmoffices@sha256:4e52e96573d67ac5dd150b971baa8c03ad789e5b099b224b719cfe0419933932
         ports:
           - containerPort: 8080
             protocol: TCP
