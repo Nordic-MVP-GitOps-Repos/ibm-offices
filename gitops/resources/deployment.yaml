@@ -20,8 +20,8 @@ spec:
             image-registry.openshift-image-registry.svc:5000/quarkus/ibmoffices@sha256:4e52e96573d67ac5dd150b971baa8c03ad789e5b099b224b719cfe0419933932
         ports:
           - containerPort: 8080
-              protocol: TCP
+            protocol: TCP
           - containerPort: 8443
-              protocol: TCP
+            protocol: TCP
           - containerPort: 8778
-              protocol: TCP
+            protocol: TCP
