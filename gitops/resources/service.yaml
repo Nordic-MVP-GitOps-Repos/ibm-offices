@@ -4,7 +4,7 @@ metadata:
   name: ibmoffices-service
   namespace: ibmoffices
 spec:
-   selector:
+  selector:
     app: ibmoffices
   ports:
     - protocol: TCP
