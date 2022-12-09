@@ -27,7 +27,7 @@ spec:
     directory:
       recurse: true
     path: ./gitops/resources
-    repoURL: https://github.com/Nordic-MVP-GitOps-Repos/ibmoffices.git
+    repoURL: https://github.com/Nordic-MVP-GitOps-Repos/ibm-offices.git
     targetRevision: main
   syncPolicy:
     automated:
