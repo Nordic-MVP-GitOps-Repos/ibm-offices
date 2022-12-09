@@ -6,7 +6,6 @@ rules:
   - verbs:
       - '*'
     apiGroups:
-      - apps
-      - services
+      - '*'
     resources:
       - '*'
