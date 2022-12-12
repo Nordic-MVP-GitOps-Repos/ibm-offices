@@ -15,11 +15,6 @@ spec:
       labels:
         app: ibmoffices
     spec:
-      volumes:
-        - name: https-secret
-          secret:
-            secretName: https-secret
-            defaultMode: 420
       containers:
       - name: ibmoffices
         env:
