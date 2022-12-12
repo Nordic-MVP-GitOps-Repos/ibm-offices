@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ibmoffices
+  namespace: ibmoffices
+  labels:
+    app: ibmoffices
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ibmoffices
+  template:
+    metadata:
+      labels:
+        app: ibmoffices
+    spec:
+      containers:
+      - name: ibmoffices
+        image: >-
+            image-registry.openshift-image-registry.svc:5000/ibmoffices/ibmoffices:latest
+        ports:
+          - containerPort: 8080
+            protocol: TCP
+          - containerPort: 8443
+            protocol: TCP
+          - containerPort: 8778
+            protocol: TCP
