@@ -15,8 +15,22 @@ spec:
       labels:
         app: ibmoffices
     spec:
+      volumes:
+        - name: https-secret
+          secret:
+            secretName: https-secret
+            defaultMode: 420
       containers:
       - name: ibmoffices
+        env:
+            - name: QUARKUS_HTTP_SSL_CERTIFICATE_FILE
+              value: /var/run/kubernetes.io/secrets/ssl/cert.pem
+            - name: QUARKUS_HTTP_SSL_CERTIFICATE_KEY_FILE
+              value: /var/run/kubernetes.io/secrets/ssl/key.pem
+            - name: QUARKUS_HTTP_INSECURE_REQUESTS
+              value: redirect
+            - name: QUARKUS_HTTP_SSL_PORT
+              value: '8443'
         image: >-
             image-registry.openshift-image-registry.svc:5000/ibmoffices/ibmoffices:latest
         ports:
