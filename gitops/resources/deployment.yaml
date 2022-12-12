@@ -15,6 +15,11 @@ spec:
       labels:
         app: ibmoffices
     spec:
+      volumes:
+        - name: https-secret
+          secret:
+            secretName: https-secret
+            defaultMode: 420
       containers:
       - name: ibmoffices
         env:
@@ -35,3 +40,7 @@ spec:
             protocol: TCP
           - containerPort: 8778
             protocol: TCP
+        volumeMounts:
+            - name: https-secret
+              readOnly: true
+              mountPath: /var/run/kubernetes.io/secrets/ssl
