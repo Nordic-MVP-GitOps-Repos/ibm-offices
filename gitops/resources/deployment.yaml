@@ -16,17 +16,17 @@ spec:
         app: ibmoffices
     spec:
       volumes:
-        - name: https-secret
+        - name: quarkus-certificate-secret
           secret:
-            secretName: https-secret
+            secretName: quarkus-certificate-secret
             defaultMode: 420
       containers:
       - name: ibmoffices
         env:
             - name: QUARKUS_HTTP_SSL_CERTIFICATE_FILE
-              value: /var/run/kubernetes.io/secrets/ssl/cert.pem
+              value: /var/run/kubernetes.io/secrets/ssl/tls.crt
             - name: QUARKUS_HTTP_SSL_CERTIFICATE_KEY_FILE
-              value: /var/run/kubernetes.io/secrets/ssl/key.pem
+              value: /var/run/kubernetes.io/secrets/ssl/tls.key
             - name: QUARKUS_HTTP_INSECURE_REQUESTS
               value: redirect
             - name: QUARKUS_HTTP_SSL_PORT
@@ -41,6 +41,6 @@ spec:
           - containerPort: 8778
             protocol: TCP
         volumeMounts:
-            - name: https-secret
+            - name: quarkus-certificate-secret
               readOnly: true
               mountPath: /var/run/kubernetes.io/secrets/ssl
