@@ -92,6 +92,9 @@ spec:
           value: 'apic help'
       runAfter:
         - git-clone
+      taskRef:
+        kind: Task
+        name: apic-client
       workspaces:
         - name: workspace
           workspace: workspace
