@@ -83,5 +83,17 @@ spec:
       workspaces:
         - name: source
           workspace: workspace
+    - name: apic-client
+      params: 
+        - name: APIC_CLIENT_IMAGE
+          value: >-
+            image-registry.openshift-image-registry.svc:5000/cp4i/apic-client
+        - name: SCRIPT
+          value: 'apic help'
+      runAfter:
+        - git-clone
+      workspaces:
+        - name: workspace
+          workspace: workspace
   workspaces:
     - name: workspace
