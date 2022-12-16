@@ -87,7 +87,7 @@ spec:
       params: 
         - name: APIC_CLIENT_IMAGE
           value: >-
-            image-registry.openshift-image-registry.svc:5000/cp4i/apic-client
+            image-registry.openshift-image-registry.svc:5000/cp4i/apic-client@sha256:b577532bbaf02e36c097caabf169013866ea984feb31a0cc1178bce6181fa082
         - name: SCRIPT
           value: 'apic help'
       runAfter:
