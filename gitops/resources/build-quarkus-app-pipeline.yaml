@@ -89,7 +89,12 @@ spec:
           value: >-
             image-registry.openshift-image-registry.svc:5000/ibmoffices/apic-client@sha256:e2cc265adcec92c61858ea1fd0abb4052e2b1dcc4b222ea8188195bac881c18a
         - name: SCRIPT
-          value: 'apic help'
+          value: >
+            curl -vk https://secure-route-ibmoffices.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/q/openapi > openapi.yaml
+
+            cat openapi.yaml
+            
+            apic version
       runAfter:
         - git-clone
       taskRef:
