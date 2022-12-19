@@ -94,6 +94,8 @@ spec:
 
             cat openapi.yaml
             
+            cat /workspaces/client-creds/client-creds.json
+            
             apic version
       runAfter:
         - git-clone
@@ -103,5 +105,8 @@ spec:
       workspaces:
         - name: workspace
           workspace: workspace
+        - name: client-creds
+          workspace: client-creds
   workspaces:
     - name: workspace
+    - name: client-creds
