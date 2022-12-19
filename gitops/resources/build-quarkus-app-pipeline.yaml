@@ -87,14 +87,14 @@ spec:
       params: 
         - name: APIC_CLIENT_IMAGE
           value: >-
-            image-registry.openshift-image-registry.svc:5000/ibmoffices/apic-client@sha256:df2af5ba8b5c0ddaf0586ba37c5465176f7b4fe6e279a84915a1a6b93ac26cc5
+            image-registry.openshift-image-registry.svc:5000/ibmoffices/apic-client@sha256:316d9ea3c2f561c1bc78ba31b35f61d3ccbe0112439aba0800eab76ec2f75dc4
 
         - name: SCRIPT
           value: |
           
             export USERNAME=$(cat $(workspaces.basic-auth.path)/username)
             export PASSWORD=$(cat $(workspaces.basic-auth.path)/password)
-            export SERVER=https://api-connec-e1355ae2-platform-api-cp4i.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/
+            export SERVER=https://api-connec-58c7668e-platform-api-cp4i.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud
             export ORG=providerorg 
             
             apic client-creds:clear
