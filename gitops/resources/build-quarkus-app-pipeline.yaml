@@ -92,6 +92,8 @@ spec:
         - name: SCRIPT
           value: |
           
+            set -x
+          
             export USERNAME=$(cat $(workspaces.basic-auth.path)/username)
             export PASSWORD=$(cat $(workspaces.basic-auth.path)/password)
             export SERVER=https://api-connec-58c7668e-platform-api-cp4i.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud
@@ -101,27 +103,25 @@ spec:
             apic client-creds:set /workspace/client-credentials/client-creds.json
             apic login -s $SERVER --username $USERNAME --password $PASSWORD --realm provider/default-idp-2
             
-            set -x            
-         
             curl -k -s https://secure-route-ibmoffices.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/q/openapi > openapi.yaml
         
             cat openapi.yaml | yq '.info.title'
             
             apic me:get -s $SERVER
             
-            apic apis:list-all -s https://api-connec-e1355ae2-platform-api-cp4i.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/ --org providerorg --catalog sandbox --scope catalog
+            apic apis:list-all -s $SERVER --org providerorg --catalog sandbox --scope catalog
             
-            sleep 2
+            #sleep 2
             
-            apic draft-apis:list-all -s https://api-connec-e1355ae2-platform-api-cp4i.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/ --org providerorg
+            #apic draft-apis:list-all -s $SERVER --org providerorg
             
-            ls -lth ./openapi.yaml
+            #ls -lth ./openapi.yaml
             
-            sleep 2
+            #sleep 2
             
-            apic draft-apis:list -s https://api-connec-e1355ae2-platform-api-cp4i.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/ -o providerorg
-            sleep 2
-            apic draft-apis:create --api_type rest --gateway_type datapower-api-gateway -o providerorg -s https://api-connec-e1355ae2-platform-api-cp4i.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/ ./openapi.yaml
+            #apic draft-apis:list -s $SERVER -o providerorg
+            #sleep 2
+            #apic draft-apis:create --api_type rest --gateway_type datapower-api-gateway -o providerorg -s $SERVER ./openapi.yaml
             
       taskRef:
         kind: Task
