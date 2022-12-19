@@ -102,6 +102,11 @@ spec:
             
             ls /workspace/basic-auth/
             
+            cat /workspace/basic-auth/username
+            
+            
+            cat /workspace/basic-auth/password
+            
       runAfter:
         - git-clone
       taskRef:
