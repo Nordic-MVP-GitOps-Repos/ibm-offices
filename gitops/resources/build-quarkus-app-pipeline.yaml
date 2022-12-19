@@ -91,9 +91,10 @@ spec:
         - name: SCRIPT
           value: >
           
-            # curl -vk https://secure-route-ibmoffices.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/q/openapi > openapi.yaml
+            curl -vk https://secure-route-ibmoffices.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/q/openapi > openapi.yaml
 
-            # cat openapi.yaml
+            # Todo: add policies required for APIC to accept openapi yaml.
+            cat openapi.yaml | yq '.info.title'
             
             export USERNAME=$(cat $(workspaces.basic-auth.path)/username)
             
@@ -114,7 +115,7 @@ spec:
             apic apis:list-all -s $SERVER --org providerorg --catalog sandbox --scope catalog
       
       runAfter:
-        - git-clone
+        - buildah
       taskRef:
         kind: Task
         name: apic-client
