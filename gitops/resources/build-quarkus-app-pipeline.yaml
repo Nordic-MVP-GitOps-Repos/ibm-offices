@@ -116,7 +116,7 @@ spec:
             
             #apic apis:list-all -s $SERVER --org $ORG --catalog sandbox --scope catalog
             
-            apic draft-apis:create -o providerorg -s $SERVER openapi.yaml
+            apic draft-apis:create -o providerorg -s $SERVER openapi-na.yaml
       
       runAfter:
         - git-clone
