@@ -120,7 +120,7 @@ spec:
             
             #Create a draft api from the openapi definition.
             
-            apic draft-apis:create --server $SERVER --org $ORG openapi.yaml
+            apic draft-apis:create --org $ORG --server $SERVER openapi.yaml
       
       
       runAfter:
