@@ -116,7 +116,7 @@ spec:
             
             #apic apis:list-all -s $SERVER --org $ORG --catalog sandbox --scope catalog
             
-            apic draft-apis:create --api_type rest --gateway_type datapower-api-gateway --org $ORG -s $SERVER ./openapi.yaml
+            apic draft-apis:create --api_type rest --gateway_type datapower-api-gateway -s $SERVER ./openapi.yaml
             
       runAfter:
         - git-clone
