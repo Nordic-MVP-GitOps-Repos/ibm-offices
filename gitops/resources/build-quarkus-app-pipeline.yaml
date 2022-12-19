@@ -90,9 +90,15 @@ spec:
             image-registry.openshift-image-registry.svc:5000/ibmoffices/apic-client@sha256:e2cc265adcec92c61858ea1fd0abb4052e2b1dcc4b222ea8188195bac881c18a
         - name: SCRIPT
           value: >
-            curl -vk https://secure-route-ibmoffices.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/q/openapi > openapi.yaml
+            # curl -vk https://secure-route-ibmoffices.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/q/openapi > openapi.yaml
 
-            cat openapi.yaml
+            # cat openapi.yaml
+           
+            export USERNAME | cat $(workspaces.client-credentials.path)/username
+            export PASSWORD | cat $(workspaces.client-credentials.path)/password
+            export SERVER='https://api-connec-e1355ae2-platform-api-cp4i.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/'
+          
+            echo 'Username is $USERNAME'
             
             apic version
             
@@ -100,13 +106,9 @@ spec:
             
             apic client-creds:set /workspace/client-credentials/client-creds.json
             
-            ls /workspace/basic-auth/
+            apic login -s $SERVER --username $USERNAME --password $PASSWORD --realm provider/default-idp-2
             
-            cat /workspace/basic-auth/username
-            
-            
-            cat /workspace/basic-auth/password
-            
+            echo 'Logged in'
       runAfter:
         - git-clone
       taskRef:
