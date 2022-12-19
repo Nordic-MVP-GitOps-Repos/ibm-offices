@@ -90,33 +90,28 @@ spec:
             image-registry.openshift-image-registry.svc:5000/ibmoffices/apic-client@sha256:df2af5ba8b5c0ddaf0586ba37c5465176f7b4fe6e279a84915a1a6b93ac26cc5
 
         - name: SCRIPT
-          value: >
+          value: |
           
             export USERNAME=$(cat $(workspaces.basic-auth.path)/username)
-            
             export PASSWORD=$(cat $(workspaces.basic-auth.path)/password)
-            
             export SERVER='https://api-connec-e1355ae2-platform-api-cp4i.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/'
-             
             export ORG='providerorg' 
             
             apic client-creds:clear
-            
             apic client-creds:set /workspace/client-credentials/client-creds.json
-            
             apic login -s $SERVER --username $USERNAME --password $PASSWORD --realm provider/default-idp-2
             
             set -x            
          
             curl -k -s https://secure-route-ibmoffices.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/q/openapi > openapi.yaml
         
-            #cat openapi.yaml | yq '.info.title'
+            cat openapi.yaml | yq '.info.title'
             
-            #apic me:get -s $SERVER
+            apic me:get -s $SERVER
             
-            #apic apis:list-all -s $SERVER --org $ORG --catalog sandbox --scope catalog
-            
-            apic draft-apis:create --api_type rest --gateway_type datapower-api-gateway -s $SERVER ./openapi.yaml
+            apic apis:list-all -s $SERVER --org $ORG --catalog sandbox --scope catalog
+           
+            apic draft-apis:create --api_type rest --gateway_type datapower-api-gateway -o $ORG -s $SERVER ./openapi.yaml
             
       runAfter:
         - git-clone
