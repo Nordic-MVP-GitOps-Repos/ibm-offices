@@ -96,9 +96,8 @@ spec:
           
             export USERNAME=$(cat $(workspaces.basic-auth.path)/username)
             export PASSWORD=$(cat $(workspaces.basic-auth.path)/password)
+            export PROVIDER_ORG=po
             export SERVER=https://api-connec-58c7668e-platform-api-cp4i.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud
-            
-            export ORG=po
             
             apic client-creds:clear
             apic client-creds:set /workspace/client-credentials/client-creds.json
@@ -108,11 +107,11 @@ spec:
         
             cat openapi.yaml | yq '.info.title'
             
-            apic apis:list-all -s $SERVER -o $ORG --catalog sandbox --scope catalog
+            apic apis:list-all -s $SERVER -o $PROVIDER_ORG --catalog sandbox --scope catalog
             
-            apic draft-apis:create --api_type rest --gateway_type datapower-api-gateway -o $ORG -s $SERVER ./openapi.yaml
+            apic draft-apis:create --api_type rest --gateway_type datapower-api-gateway -o $PROVIDER_ORG -s $SERVER ./openapi.yaml
             
-            apic draft-apis:list-all -s $SERVER -o $ORG 
+            apic draft-apis:list-all -s $SERVER -o $PROVIDER_ORG 
             
       taskRef:
         kind: Task
