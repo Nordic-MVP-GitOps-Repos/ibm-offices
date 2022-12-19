@@ -113,6 +113,9 @@ spec:
             
             sleep 2
             
+            
+            apic draft-apis:clear-all -s $SERVER --org po --confirm po --debug
+            
             apic draft-apis:list-all -s $SERVER --org po --debug
             
             #ls -lth ./openapi.yaml
