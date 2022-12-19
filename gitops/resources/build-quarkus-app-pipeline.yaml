@@ -119,6 +119,8 @@ spec:
             
             sleep 2
             
+            apic draft-apis:list -s https://api-connec-e1355ae2-platform-api-cp4i.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/ -o providerorg
+            sleep 2
             apic draft-apis:create --api_type rest --gateway_type datapower-api-gateway -o providerorg -s https://api-connec-e1355ae2-platform-api-cp4i.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/ ./openapi.yaml
             
       taskRef:
