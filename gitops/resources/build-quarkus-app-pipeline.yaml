@@ -97,7 +97,9 @@ spec:
             ls -lth $(workspaces.basic-auth.path)/
            
             export USERNAME | cat $(workspaces.basic-auth.path)/username
+            
             export PASSWORD | cat $(workspaces.basic-auth.path)/password
+            
             export SERVER='https://api-connec-e1355ae2-platform-api-cp4i.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/'
           
             echo 'Username is $USERNAME'
