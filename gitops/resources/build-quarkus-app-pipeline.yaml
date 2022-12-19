@@ -108,7 +108,7 @@ spec:
         - name: workspace
           workspace: workspace
         - name: client-credentials
-          workspace: client-creds
+          workspace: client-credentials
   workspaces:
     - name: workspace
-    - name: client-creds
+    - name: client-credentials
