@@ -111,7 +111,7 @@ spec:
             
             apic me:get -s $SERVER
             
-            apic apis:list-all -s $SERVER --org ProviderOrg --catalog Sandbox
+            apic apis:list-all -s $SERVER --org ProviderOrg --catalog Sandbox --scope catalog
             
       runAfter:
         - git-clone
