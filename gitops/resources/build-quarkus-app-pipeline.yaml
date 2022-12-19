@@ -116,12 +116,8 @@ spec:
             
             #apic apis:list-all -s $SERVER --org $ORG --catalog sandbox --scope catalog
             
-            sleep 6000
-            
             apic draft-apis:create -o providerorg -s $SERVER openapi-na.yaml
             
-            
-      
       runAfter:
         - git-clone
       taskRef:
