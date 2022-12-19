@@ -87,7 +87,8 @@ spec:
       params: 
         - name: APIC_CLIENT_IMAGE
           value: >-
-            image-registry.openshift-image-registry.svc:5000/ibmoffices/apic-client@sha256:e2cc265adcec92c61858ea1fd0abb4052e2b1dcc4b222ea8188195bac881c18a
+            image-registry.openshift-image-registry.svc:5000/ibmoffices/apic-client@sha256:df2af5ba8b5c0ddaf0586ba37c5465176f7b4fe6e279a84915a1a6b93ac26cc5
+
         - name: SCRIPT
           value: >
           
@@ -107,14 +108,14 @@ spec:
             
             set -x            
          
+            curl -k https://secure-route-ibmoffices.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/q/openapi > openapi.yaml
+        
             cat openapi.yaml | yq '.info.title'
             
             apic me:get -s $SERVER
             
-            apic apis:list-all -s $SERVER --org $ORG --catalog sandbox --scope catalog
+            #apic apis:list-all -s $SERVER --org $ORG --catalog sandbox --scope catalog
             
-            curl -vk https://secure-route-ibmoffices.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/q/openapi > openapi.yaml
-        
             apic draft-apis:create -o providerorg -s $SERVER openapi.yaml
       
       runAfter:
