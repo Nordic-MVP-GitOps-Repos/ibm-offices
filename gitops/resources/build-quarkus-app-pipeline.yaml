@@ -91,7 +91,7 @@ spec:
         - name: SCRIPT
           value: >
           
-            #set -x
+            set -x
           
             # curl -vk https://secure-route-ibmoffices.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/q/openapi > openapi.yaml
 
@@ -112,6 +112,7 @@ spec:
             apic me:get -s $SERVER
             
             apic apis:list-all -s $SERVER --org ProviderOrg --catalog Sandbox --scope catalog
+            
             
       runAfter:
         - git-clone
