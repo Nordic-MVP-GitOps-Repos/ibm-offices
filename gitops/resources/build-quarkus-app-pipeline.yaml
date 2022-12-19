@@ -111,9 +111,9 @@ spec:
             
             apic apis:list-all -s $SERVER --org providerorg --catalog sandbox --scope catalog
             
-            #sleep 2
+            sleep 2
             
-            #apic draft-apis:list-all -s $SERVER --org providerorg
+            apic draft-apis:list-all -s $SERVER --org providerorg
             
             #ls -lth ./openapi.yaml
             
