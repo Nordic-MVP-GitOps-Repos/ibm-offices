@@ -113,7 +113,7 @@ spec:
             
             sleep 2
             
-            apic draft-apis:list-all -s $SERVER --org po --format json
+            apic draft-apis:list-all -s $SERVER --org po --debug
             
             #ls -lth ./openapi.yaml
             
