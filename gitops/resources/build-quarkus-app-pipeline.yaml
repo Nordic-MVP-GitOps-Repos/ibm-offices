@@ -97,6 +97,7 @@ spec:
             apic version
             
             apic client-creds:clear
+            
             apic client-creds:set /workspace/client-credentials/client-creds.json
             
       runAfter:
