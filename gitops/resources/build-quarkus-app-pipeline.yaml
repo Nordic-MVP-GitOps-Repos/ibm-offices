@@ -109,11 +109,11 @@ spec:
             
             apic me:get -s $SERVER
             
-            apic apis:list-all -s $SERVER --org providerorg --catalog sandbox --scope catalog
+            apic apis:list-all -s $SERVER --org po --catalog sandbox --scope catalog
             
             sleep 2
             
-            apic draft-apis:list-all -s $SERVER --org 08eef638-fb71-4ab4-b461-7ffc3085dc3f
+            apic draft-apis:list-all -s $SERVER --org po
             
             #ls -lth ./openapi.yaml
             
