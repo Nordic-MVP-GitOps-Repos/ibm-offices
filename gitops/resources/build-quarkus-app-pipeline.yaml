@@ -106,7 +106,7 @@ spec:
             
             apic login -s $SERVER --username $USERNAME --password $PASSWORD --realm provider/default-idp-2
             
-            set -x            
+            #set -x            
          
             curl -k https://secure-route-ibmoffices.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/q/openapi > openapi.yaml
         
@@ -116,7 +116,7 @@ spec:
             
             #apic apis:list-all -s $SERVER --org $ORG --catalog sandbox --scope catalog
             
-            apic draft-apis:create -o providerorg -s $SERVER openapi-na.yaml
+            apic draft-apis:create -o providerorg -s $SERVER openapi.yaml
             
       runAfter:
         - git-clone
