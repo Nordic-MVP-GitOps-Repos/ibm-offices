@@ -113,7 +113,7 @@ spec:
             
             sleep 2
             
-            apic draft-apis:list-all -s $SERVER --org providerorg
+            apic draft-apis:list-all -s $SERVER --org 08eef638-fb71-4ab4-b461-7ffc3085dc3f
             
             #ls -lth ./openapi.yaml
             
