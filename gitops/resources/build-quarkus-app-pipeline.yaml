@@ -94,8 +94,8 @@ spec:
           
             export USERNAME=$(cat $(workspaces.basic-auth.path)/username)
             export PASSWORD=$(cat $(workspaces.basic-auth.path)/password)
-            export SERVER='https://api-connec-e1355ae2-platform-api-cp4i.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/'
-            export ORG='providerorg' 
+            export SERVER=https://api-connec-e1355ae2-platform-api-cp4i.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/
+            export ORG=providerorg 
             
             apic client-creds:clear
             apic client-creds:set /workspace/client-credentials/client-creds.json
@@ -109,17 +109,18 @@ spec:
             
             apic me:get -s $SERVER
             
-            apic apis:list-all -s $SERVER --org $ORG --catalog sandbox --scope catalog
+            apic apis:list-all -s https://api-connec-e1355ae2-platform-api-cp4i.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/ --org providerorg --catalog sandbox --scope catalog
             
             sleep 2
+            
+            apic draft-apis:list-all -s https://api-connec-e1355ae2-platform-api-cp4i.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/ --org providerorg
             
             ls -lth ./openapi.yaml
             
             sleep 2
-            apic draft-apis:create --api_type rest --gateway_type datapower-api-gateway -o na -s $SERVER ./openapi.yaml
             
-      runAfter:
-        - git-clone
+            apic draft-apis:create --api_type rest --gateway_type datapower-api-gateway -o providerorg -s https://api-connec-e1355ae2-platform-api-cp4i.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/ ./openapi.yaml
+            
       taskRef:
         kind: Task
         name: apic-client
