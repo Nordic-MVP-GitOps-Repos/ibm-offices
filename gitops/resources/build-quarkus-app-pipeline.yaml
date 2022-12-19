@@ -94,9 +94,9 @@ spec:
 
             cat openapi.yaml
             
-            ls -lth /workspace/
+            ls -lth /workspace/client-credentials/
             
-            cat /workspace/client-creds/client-creds.json
+            cat /workspace/client-credentials/client-creds.json
             
             apic version
       runAfter:
