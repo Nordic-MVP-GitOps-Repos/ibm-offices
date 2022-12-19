@@ -110,7 +110,12 @@ spec:
             apic me:get -s $SERVER
             
             apic apis:list-all -s $SERVER --org $ORG --catalog sandbox --scope catalog
+            
+            sleep 2
+            
             ls -lth ./openapi.yaml
+            
+            sleep 2
             apic draft-apis:create --api_type rest --gateway_type datapower-api-gateway -o $ORG -s $SERVER ./openapi.yaml
             
       runAfter:
