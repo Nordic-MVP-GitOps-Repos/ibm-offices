@@ -97,22 +97,28 @@ spec:
             
             export SERVER='https://api-connec-e1355ae2-platform-api-cp4i.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/'
              
+            export ORG='providerorg' 
+            
             apic client-creds:clear
             
             apic client-creds:set /workspace/client-credentials/client-creds.json
             
             apic login -s $SERVER --username $USERNAME --password $PASSWORD --realm provider/default-idp-2
             
-            set -x
+            set -x            
             
-            curl -vk https://secure-route-ibmoffices.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/q/openapi > openapi.yaml
-
             # Todo: add policies required for APIC to accept openapi yaml.
-            cat openapi.yaml | yq '.info.title'
+            #cat openapi.yaml | yq '.info.title'
             
-            apic me:get -s $SERVER
+            #apic me:get -s $SERVER
             
-            apic apis:list-all -s $SERVER --org providerorg --catalog sandbox --scope catalog
+            #apic apis:list-all -s $SERVER --org $ORG --catalog sandbox --scope catalog
+            
+            # Fetch the openapi definition for the ibmoffices service
+            curl -vk https://secure-route-ibmoffices.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/q/openapi > openapi.yaml
+            
+            # Create a draft api from the openapi definition.
+            apic draft-apis:create --server $SERVER --org $ORG openapi.yaml
       
       runAfter:
         - buildah
