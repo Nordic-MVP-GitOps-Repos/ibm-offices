@@ -91,8 +91,6 @@ spec:
         - name: SCRIPT
           value: >
           
-            set -x
-          
             # curl -vk https://secure-route-ibmoffices.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/q/openapi > openapi.yaml
 
             # cat openapi.yaml
@@ -109,11 +107,12 @@ spec:
             
             apic login -s $SERVER --username $USERNAME --password $PASSWORD --realm provider/default-idp-2
             
+            set -x
+            
             apic me:get -s $SERVER
             
-            apic apis:list-all -s $SERVER --org ProviderOrg --catalog Sandbox --scope catalog
-            
-            
+            apic apis:list-all -s $SERVER --org providerorg --catalog sandbox --scope catalog
+      
       runAfter:
         - git-clone
       taskRef:
