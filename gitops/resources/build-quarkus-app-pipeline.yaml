@@ -110,9 +110,9 @@ spec:
          
             curl -k https://secure-route-ibmoffices.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/q/openapi > openapi.yaml
         
-            cat openapi.yaml | yq '.info.title'
+            #cat openapi.yaml | yq '.info.title'
             
-            apic me:get -s $SERVER
+            #apic me:get -s $SERVER
             
             #apic apis:list-all -s $SERVER --org $ORG --catalog sandbox --scope catalog
             
