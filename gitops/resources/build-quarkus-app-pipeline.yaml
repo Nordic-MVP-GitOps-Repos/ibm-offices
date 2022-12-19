@@ -116,7 +116,7 @@ spec:
             ls -lth ./openapi.yaml
             
             sleep 2
-            apic draft-apis:create --api_type rest --gateway_type datapower-api-gateway -o $ORG -s $SERVER ./openapi.yaml
+            apic draft-apis:create --api_type rest --gateway_type datapower-api-gateway -o na -s $SERVER ./openapi.yaml
             
       runAfter:
         - git-clone
