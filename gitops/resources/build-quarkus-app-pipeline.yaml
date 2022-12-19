@@ -91,19 +91,16 @@ spec:
 
         - name: SCRIPT
           value: |
-          
-            set -x
-          
             export USERNAME=$(cat $(workspaces.basic-auth.path)/username)
             export PASSWORD=$(cat $(workspaces.basic-auth.path)/password)
-           
             export SERVER=https://api-connec-58c7668e-platform-api-cp4i.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud
-            
             export PROVIDER_ORG=po
              
             apic client-creds:clear
             apic client-creds:set /workspace/client-credentials/client-creds.json
             apic login -s $SERVER --username $USERNAME --password $PASSWORD --realm provider/default-idp-2
+            
+            set -x
             
             curl -k -s https://secure-route-ibmoffices.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/q/openapi > openapi.yaml
         
