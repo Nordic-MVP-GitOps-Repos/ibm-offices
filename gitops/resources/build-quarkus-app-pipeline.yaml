@@ -107,23 +107,11 @@ spec:
         
             cat openapi.yaml | yq '.info.title'
             
-            #apic me:get -s $SERVER
-            
             apic apis:list-all -s $SERVER --org po --catalog sandbox --scope catalog
             
-            sleep 2
+            apic draft-apis:create --api_type rest --gateway_type datapower-api-gateway -o po -s $SERVER ./openapi.yaml
             
-            apic draft-apis:clear-all -s $SERVER --org po --confirm po --debug
-            
-            apic draft-apis:list-all -s $SERVER --org po --debug
-            
-            #ls -lth ./openapi.yaml
-            
-            #sleep 2
-            
-            #apic draft-apis:list -s $SERVER -o providerorg
-            #sleep 2
-            #apic draft-apis:create --api_type rest --gateway_type datapower-api-gateway -o providerorg -s $SERVER ./openapi.yaml
+            apic draft-apis:list-all -s $SERVER -o po --debug
             
       taskRef:
         kind: Task
