@@ -101,8 +101,6 @@ spec:
             apic client-creds:set /workspace/client-credentials/client-creds.json
             
             ls - lth /workspace/
-            
-            
       runAfter:
         - git-clone
       taskRef:
@@ -113,6 +111,9 @@ spec:
           workspace: workspace
         - name: client-credentials
           workspace: client-credentials
+        - name: basic-auth
+          workspace: basic-auth
   workspaces:
     - name: workspace
     - name: client-credentials
+    - name: basic-auth
