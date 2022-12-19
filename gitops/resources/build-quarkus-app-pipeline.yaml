@@ -94,11 +94,11 @@ spec:
 
             cat openapi.yaml
             
-            ls -lth /workspace/client-credentials/
-            
-            cat /workspace/client-credentials/client-creds.json
-            
             apic version
+            
+            apic client-creds:clear
+            apic client-creds:set /workspace/client-credentials/client-creds.json
+            
       runAfter:
         - git-clone
       taskRef:
