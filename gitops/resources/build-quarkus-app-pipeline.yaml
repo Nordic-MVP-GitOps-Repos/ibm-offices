@@ -116,6 +116,8 @@ spec:
     
             apic draft-apis:create --api_type rest --gateway_type datapower-api-gateway -o $PROVIDER_ORG -s $SERVER ./openapi.yaml
             
+      runAfter:
+        - buildah
       taskRef:
         kind: Task
         name: apic-client
