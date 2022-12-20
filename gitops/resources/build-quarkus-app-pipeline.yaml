@@ -106,7 +106,7 @@ spec:
         
             cat openapi.yaml | yq '.info.title'
             
-            yq -i '.info.description = $(tasks.git-clone.results.commit)' openapi.yaml
+            yq -i '.info.description = "$(tasks.git-clone.results.commit)"' openapi.yaml
 
             cat openapi.yaml | yq '.info.description'
             
