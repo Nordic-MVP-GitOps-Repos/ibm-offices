@@ -103,19 +103,18 @@ spec:
             
             set -x
             
+            # Fetch openapi description of the ibmoffices service
             curl -k -s https://secure-route-ibmoffices.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/q/openapi > openapi.yaml
            
+            # Set description, version and title of the api
             yq -i '.info.description = "Git commit is $(tasks.git-clone.results.commit) from $(tasks.git-clone.results.url)"' openapi.yaml
             yq -i '.info.version = "1.0.0"' openapi.yaml
             yq -i '.info.title = "ibm-offices-$(tasks.git-clone.results.commit)"' openapi.yaml
             
+            # Add target-url gateway property
             yq -i '.x-ibm-configuration.properties += {"target-url": {"value": strenv(TARGET_URL)}}' openapi.yaml
-
-            cat openapi.yaml | yq '.info.description'
-          
+    
             apic draft-apis:create --api_type rest --gateway_type datapower-api-gateway -o $PROVIDER_ORG -s $SERVER ./openapi.yaml
-            
-            apic draft-apis:list-all -s $SERVER -o $PROVIDER_ORG 
             
       taskRef:
         kind: Task
