@@ -105,6 +105,8 @@ spec:
             curl -k -s https://secure-route-ibmoffices.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/q/openapi > openapi.yaml
            
             yq -i '.info.description = "Git commit is $(tasks.git-clone.results.commit) from $(tasks.git-clone.results.url)"' openapi.yaml
+            
+            yq -i '.x-ibm-configuration.properties += {"target-url": {"value": "https://target-url.com", "encoded": "false"}}' openapi.yaml
 
             cat openapi.yaml | yq '.info.description'
           
