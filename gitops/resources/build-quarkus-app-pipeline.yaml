@@ -103,15 +103,11 @@ spec:
             set -x
             
             curl -k -s https://secure-route-ibmoffices.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/q/openapi > openapi.yaml
-        
-            cat openapi.yaml | yq '.info.title'
-            
-            yq -i '.info.description = "$(tasks.git-clone.results.commit)"' openapi.yaml
+           
+            yq -i '.info.description = "Git commit is $(tasks.git-clone.results.commit) from $(tasks.git-clone.results.url)"' openapi.yaml
 
             cat openapi.yaml | yq '.info.description'
-            
-            apic apis:list-all -s $SERVER -o $PROVIDER_ORG --catalog sandbox --scope catalog
-            
+          
             apic draft-apis:create --api_type rest --gateway_type datapower-api-gateway -o $PROVIDER_ORG -s $SERVER ./openapi.yaml
             
             apic draft-apis:list-all -s $SERVER -o $PROVIDER_ORG 
