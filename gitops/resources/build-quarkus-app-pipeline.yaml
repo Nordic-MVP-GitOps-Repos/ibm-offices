@@ -95,6 +95,8 @@ spec:
             export PASSWORD=$(cat $(workspaces.basic-auth.path)/password)
             export SERVER=https://api-connec-58c7668e-platform-api-cp4i.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud
             export PROVIDER_ORG=po
+            
+            export TARGET_URL=https://secure-route-ibmoffices.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/offices
              
             apic client-creds:clear
             apic client-creds:set /workspace/client-credentials/client-creds.json
@@ -106,7 +108,7 @@ spec:
            
             yq -i '.info.description = "Git commit is $(tasks.git-clone.results.commit) from $(tasks.git-clone.results.url)"' openapi.yaml
             
-            yq -i '.x-ibm-configuration.properties += {"target-url": {"value": "https://target-url.com"}}' openapi.yaml
+            yq -i '.x-ibm-configuration.properties += {"target-url": {"value": "$TARGET_URL"}}' openapi.yaml
 
             cat openapi.yaml | yq '.info.description'
           
