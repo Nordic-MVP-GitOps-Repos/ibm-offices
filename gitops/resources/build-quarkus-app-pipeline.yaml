@@ -109,7 +109,7 @@ spec:
             yq -i '.info.version = "1.0.0"' openapi.yaml
             yq -i '.info.title = "ibm-offices-$(tasks.git-clone.results.commit)"' openapi.yaml
             
-            yq -i '.x-ibm-configuration.properties += {"target-url": {"value": "strenv(TARGET_URL)"}}' openapi.yaml
+            yq -i '.x-ibm-configuration.properties += {"target-url": {"value": strenv(TARGET_URL)}}' openapi.yaml
 
             cat openapi.yaml | yq '.info.description'
           
