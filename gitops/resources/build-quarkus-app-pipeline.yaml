@@ -106,6 +106,10 @@ spec:
         
             cat openapi.yaml | yq '.info.title'
             
+            yq -i '.info.description = $(tasks.git-clone.results.commit)' openapi.yaml
+
+            cat openapi.yaml | yq '.info.description'
+            
             apic apis:list-all -s $SERVER -o $PROVIDER_ORG --catalog sandbox --scope catalog
             
             apic draft-apis:create --api_type rest --gateway_type datapower-api-gateway -o $PROVIDER_ORG -s $SERVER ./openapi.yaml
