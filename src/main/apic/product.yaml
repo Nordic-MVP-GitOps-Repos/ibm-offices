@@ -1,0 +1,30 @@
+product: 1.0.0
+info:
+  title: ibm-offices
+  name: ibm-offices
+  version: 1.0.0
+gateways:
+- datapower-api-gateway
+apis:
+  ibm-offices-ce66b8823e3dceca52850a50f6046f6d0cae98a61.0.0:
+    name: ibm-offices-ce66b8823e3dceca52850a50f6046f6d0cae98a6:1.0.0
+plans:
+  default:
+    title: Default Plan
+    description: Default Plan
+    approval: false
+    rate-limit:
+      value: unlimited
+    apis:
+      ibm-offices-ce66b8823e3dceca52850a50f6046f6d0cae98a61.0.0: {}
+visibility:
+  view:
+    enabled: true
+    type: public
+    tags: []
+    orgs: []
+  subscribe:
+    enabled: true
+    type: authenticated
+    tags: []
+    orgs: []
