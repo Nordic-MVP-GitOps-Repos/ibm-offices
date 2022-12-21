@@ -109,7 +109,9 @@ spec:
             
             # Add target-url gateway property
             yq -i '.x-ibm-configuration.properties += {"target-url": {"value": strenv(TARGET_URL)}}' openapi.yaml
-    
+  
+            apic validate openapi.yaml
+            
             apic draft-apis:create --api_type rest --gateway_type datapower-api-gateway ./openapi.yaml
             
             export PRODUCT_NAME=ibm-offices-$(tasks.git-clone.results.commit)-Product
@@ -117,6 +119,8 @@ spec:
             apic create:product --apis ibm-offices-$(tasks.git-clone.results.commit) --gateway-type datapower-api-gateway --name $PRODUCT_NAME --title $PRODUCT_NAME --filename product.yaml 
   
             cat product.yaml
+            
+            apic validate product.yaml
             
             apic draft-products:create --product-only product.yaml
   
