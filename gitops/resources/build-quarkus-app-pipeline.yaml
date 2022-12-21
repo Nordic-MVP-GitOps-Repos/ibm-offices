@@ -88,18 +88,23 @@ spec:
         - name: APIC_CLIENT_IMAGE
           value: >-
             image-registry.openshift-image-registry.svc:5000/ibmoffices/apic-client@sha256:316d9ea3c2f561c1bc78ba31b35f61d3ccbe0112439aba0800eab76ec2f75dc4
-
+        - name: MGMT_SERVER_URL
+          value: https://api-connec-58c7668e-platform-api-cp4i.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/api
+        - name: PROVIDER_ORG
+          value: po
+        - name: CATALOG
+          value: sandbox
         - name: SCRIPT
           value: |
-            export USERNAME=$(cat $(workspaces.basic-auth.path)/username)
-            export PASSWORD=$(cat $(workspaces.basic-auth.path)/password)
-            export SERVER=https://api-connec-58c7668e-platform-api-cp4i.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud
-            export PROVIDER_ORG=po
+            #export USERNAME=$(cat $(workspaces.basic-auth.path)/username)
+            #export PASSWORD=$(cat $(workspaces.basic-auth.path)/password)
+            #export SERVER=https://api-connec-58c7668e-platform-api-cp4i.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud
+            #export PROVIDER_ORG=po
             export TARGET_URL=https://secure-route-ibmoffices.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/offices
         
-            apic client-creds:clear
-            apic client-creds:set /workspace/client-credentials/client-creds.json
-            apic login -s $SERVER --username $USERNAME --password $PASSWORD --realm provider/default-idp-2
+            #apic client-creds:clear
+            #apic client-creds:set /workspace/client-credentials/client-creds.json
+            #apic login -s $SERVER --username $USERNAME --password $PASSWORD --realm provider/default-idp-2
             
             set -x
             
@@ -114,7 +119,9 @@ spec:
             # Add target-url gateway property
             yq -i '.x-ibm-configuration.properties += {"target-url": {"value": strenv(TARGET_URL)}}' openapi.yaml
     
-            apic draft-apis:create --api_type rest --gateway_type datapower-api-gateway -o $PROVIDER_ORG -s $SERVER ./openapi.yaml
+            apic draft-apis:create --api_type rest --gateway_type datapower-api-gateway ./openapi.yaml
+    
+            #apic draft-apis:create --api_type rest --gateway_type datapower-api-gateway -o $PROVIDER_ORG -s $SERVER ./openapi.yaml
             
       runAfter:
         - buildah
