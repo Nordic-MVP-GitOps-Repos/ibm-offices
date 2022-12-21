@@ -87,33 +87,35 @@ spec:
       params: 
         - name: APIC_CLIENT_IMAGE
           value: >-
-            image-registry.openshift-image-registry.svc:5000/ibmoffices/apic-client@sha256:e2cc265adcec92c61858ea1fd0abb4052e2b1dcc4b222ea8188195bac881c18a
+            image-registry.openshift-image-registry.svc:5000/ibmoffices/apic-client@sha256:316d9ea3c2f561c1bc78ba31b35f61d3ccbe0112439aba0800eab76ec2f75dc4
+
         - name: SCRIPT
-          value: >
-          
+          value: |
             export USERNAME=$(cat $(workspaces.basic-auth.path)/username)
-            
             export PASSWORD=$(cat $(workspaces.basic-auth.path)/password)
-            
-            export SERVER='https://api-connec-e1355ae2-platform-api-cp4i.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/'
-             
+            export SERVER=https://api-connec-58c7668e-platform-api-cp4i.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud
+            export PROVIDER_ORG=po
+            export TARGET_URL=https://secure-route-ibmoffices.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/offices
+        
             apic client-creds:clear
-            
             apic client-creds:set /workspace/client-credentials/client-creds.json
-            
             apic login -s $SERVER --username $USERNAME --password $PASSWORD --realm provider/default-idp-2
             
             set -x
             
-            curl -vk https://secure-route-ibmoffices.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/q/openapi > openapi.yaml
-
-            # Todo: add policies required for APIC to accept openapi yaml.
-            cat openapi.yaml | yq '.info.title'
+            # Fetch openapi description of the ibmoffices service
+            curl -k -s https://secure-route-ibmoffices.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/q/openapi > openapi.yaml
+           
+            # Set description, version and title of the api
+            yq -i '.info.description = "Git commit is $(tasks.git-clone.results.commit) from $(tasks.git-clone.results.url)"' openapi.yaml
+            yq -i '.info.version = "1.0.0"' openapi.yaml
+            yq -i '.info.title = "ibm-offices-$(tasks.git-clone.results.commit)"' openapi.yaml
             
-            apic me:get -s $SERVER
+            # Add target-url gateway property
+            yq -i '.x-ibm-configuration.properties += {"target-url": {"value": strenv(TARGET_URL)}}' openapi.yaml
+    
+            apic draft-apis:create --api_type rest --gateway_type datapower-api-gateway -o $PROVIDER_ORG -s $SERVER ./openapi.yaml
             
-            apic apis:list-all -s $SERVER --org providerorg --catalog sandbox --scope catalog
-      
       runAfter:
         - buildah
       taskRef:
