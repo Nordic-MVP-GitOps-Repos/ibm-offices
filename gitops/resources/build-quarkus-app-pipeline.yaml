@@ -119,11 +119,12 @@ spec:
             apic create:product --apis ibm-offices-$(tasks.git-clone.results.commit) --gateway-type datapower-api-gateway --name $PRODUCT_NAME --title $PRODUCT_NAME --filename product.yaml 
   
             cat product.yaml
+            apic validate product.yaml
           
             cp openapi.yaml ibm-offices-$(tasks.git-clone.results.commit)
-         
-            apic validate product.yaml
-             
+            
+            apic draft-apis:list-all
+            
             apic draft-products:create product.yaml
   
       runAfter:
