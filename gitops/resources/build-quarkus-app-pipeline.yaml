@@ -124,16 +124,15 @@ spec:
   
             cat product.yaml
             
+            # Setup correct reference to the just created API in the product. TODO: Shouldn't be necessary.
             yq -i '.apis = {"ibm-offices-$(tasks.git-clone.results.commit)1.0.0": {"name":"ibm-offices-$(tasks.git-clone.results.commit):1.0.0"}}' product.yaml
             
             cat product.yaml
           
             apic validate product.yaml
-          
-            apic draft-apis:list-all
-            
+           
             apic draft-products:create product.yaml
-  
+            
       runAfter:
         - buildah
       taskRef:
