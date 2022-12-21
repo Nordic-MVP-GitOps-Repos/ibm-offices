@@ -112,20 +112,22 @@ spec:
   
             apic validate openapi.yaml
             
+            # Create a draft API on the APIC server
             apic draft-apis:create --api_type rest --gateway_type datapower-api-gateway ./openapi.yaml
             
             export PRODUCT_NAME=ibm-offices-$(tasks.git-clone.results.commit)-Product
             
-            cp openapi.yaml ibm-offices-$(tasks.git-clone.results.commit)
+            cp openapi.yaml ibm-offices-$(tasks.git-clone.results.commit).yaml
             
-            apic create:product --apis ibm-offices-$(tasks.git-clone.results.commit) --gateway-type datapower-api-gateway --name $PRODUCT_NAME --title $PRODUCT_NAME --filename product.yaml 
+            # Create a product yaml file on the local filesystem
+            apic create:product --apis ibm-offices-$(tasks.git-clone.results.commit).yaml --gateway-type datapower-api-gateway --name $PRODUCT_NAME --title $PRODUCT_NAME --filename product.yaml 
   
             cat product.yaml
           
             apic validate product.yaml
           
             apic draft-apis:list-all
-            sleep 10  
+            
             apic draft-products:create product.yaml
   
       runAfter:
