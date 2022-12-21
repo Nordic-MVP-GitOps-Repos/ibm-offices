@@ -19,8 +19,9 @@ nb-configuration.xml
 
 # Visual Studio Code
 .vscode
+*.code-workspace
 .factorypath
-
+*.
 # OSX
 .DS_Store
 
