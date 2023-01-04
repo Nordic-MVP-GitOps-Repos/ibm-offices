@@ -97,10 +97,11 @@ spec:
         - name: SCRIPT
           value: |
           
-            export TARGET_URL=https://secure-route-ibmoffices.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/offices
+            export OFFICE_SERVICE_BASE_URL=https://secure-route-ibmoffices.itzroks-2700015rqr-juclcb-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud 
+            export TARGET_URL=$OFFICE_SERVICE_BASE_URL/offices
            
             # Fetch openapi description of the ibmoffices service
-            curl -k -s https://secure-route-ibmoffices.itzroks-2700015rqr-juclcb-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/q/openapi > openapi.yaml
+            curl -k -s $OFFICE_SERVICE_BASE_URL/q/openapi > openapi.yaml
            
             # Set description, version and title of the api
             yq -i '.info.description = "Git commit is $(tasks.git-clone.results.commit) from $(tasks.git-clone.results.url)"' openapi.yaml
