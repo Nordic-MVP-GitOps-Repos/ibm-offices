@@ -87,9 +87,9 @@ spec:
       params: 
         - name: APIC_CLIENT_IMAGE
           value: >-
-            image-registry.openshift-image-registry.svc:5000/ibmoffices/apic-client@sha256:316d9ea3c2f561c1bc78ba31b35f61d3ccbe0112439aba0800eab76ec2f75dc4
+            image-registry.openshift-image-registry.svc:5000/ibmoffices/apic-client@sha256:bfa16190d7b3b47ac12f30a1732451ac783e6a42d590cd37118baa7f8289e0e9
         - name: MGMT_SERVER_URL
-          value: https://api-connec-58c7668e-platform-api-cp4i.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/api
+          value: https://api-connec-7cef81ef-platform-api-cp4i.itzroks-2700015rqr-juclcb-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/api
         - name: PROVIDER_ORG
           value: po
         - name: CATALOG
@@ -100,7 +100,7 @@ spec:
             export TARGET_URL=https://secure-route-ibmoffices.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/offices
            
             # Fetch openapi description of the ibmoffices service
-            curl -k -s https://secure-route-ibmoffices.itzroks-2700015rqr-7vz6mp-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/q/openapi > openapi.yaml
+            curl -k -s https://secure-route-ibmoffices.itzroks-2700015rqr-juclcb-6ccd7f378ae819553d37d5f2ee142bd6-0000.eu-de.containers.appdomain.cloud/q/openapi > openapi.yaml
            
             # Set description, version and title of the api
             yq -i '.info.description = "Git commit is $(tasks.git-clone.results.commit) from $(tasks.git-clone.results.url)"' openapi.yaml
