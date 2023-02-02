@@ -86,6 +86,7 @@ spec:
     - name: git-cli
       runAfter: 
         - buildah
+        - git-cli
       taskRef:
         kind: ClusterTask
         name: git-cli
@@ -105,6 +106,23 @@ spec:
           value: /root
         - name: VERBOSE
           value: 'true'
+      workspaces:
+        - name: source
+          workspace: workspace
+    - name: yq
+      runAfter:
+        - buildah
+      taskRef:
+        kind: Task
+        name: yq
+      params:
+        - name: SCRIPT
+          value: yq --version
+        - name: image
+          value: >-
+            docker.io/mikefarah/yq:4.27.5@sha256:2be3626ed633fbe1fc33ee9343a1256a6be53334412b2251b9a859f8c145bb53
+        - name: files
+          value: []
       workspaces:
         - name: source
           workspace: workspace
