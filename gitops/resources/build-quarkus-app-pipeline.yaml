@@ -99,8 +99,12 @@ spec:
           value: kjell.m.larsson@se.ibm.com
         - name: GIT_SCRIPT
           value: |
-            ls -lth gitops/resources/deployment.yaml
-            git status
+            if [[ $(git status -uno --porcelain | wc -l) -eq 0 ]];  then 
+                exit 0
+            fi
+            git add -u .
+            git commit -m "Updated deployment based on $(tasks.git-clone-configs.results.commit)"
+            # git push origin HEAD:main
         - name: USER_HOME
           value: /root
         - name: VERBOSE
