@@ -99,6 +99,7 @@ spec:
           value: kjell.m.larsson@se.ibm.com
         - name: GIT_SCRIPT
           value: |
+            ls -lth gitops/resources/deployment.yaml
             git help
         - name: USER_HOME
           value: /root
