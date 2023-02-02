@@ -112,6 +112,8 @@ spec:
       workspaces:
         - name: source
           workspace: workspace
+        - name: basic-auth
+          workspace: github-pat
     - name: yq
       runAfter:
         - buildah
@@ -199,3 +201,4 @@ spec:
     - name: workspace
     - name: client-credentials
     - name: basic-auth
+    - name: github-pat
