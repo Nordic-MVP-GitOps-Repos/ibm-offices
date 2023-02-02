@@ -100,7 +100,6 @@ spec:
         - name: GIT_SCRIPT
           value: |
             ls -lth gitops/resources/deployment.yaml
-            yq --version
             git status
         - name: USER_HOME
           value: /root
