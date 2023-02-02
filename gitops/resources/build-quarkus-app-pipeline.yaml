@@ -103,7 +103,7 @@ spec:
                 exit 0
             fi
             git add -u .
-            git commit -m "Updated deployment based on $(tasks.git-clone-configs.results.commit)"
+            git commit -m "Updated deployment based on $(tasks.git-clone.results.commit)"
             # git push origin HEAD:main
         - name: USER_HOME
           value: /root
