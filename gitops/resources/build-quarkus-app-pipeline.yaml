@@ -86,7 +86,7 @@ spec:
     - name: git-cli
       runAfter: 
         - buildah
-        - git-cli
+        - yq
       taskRef:
         kind: ClusterTask
         name: git-cli
