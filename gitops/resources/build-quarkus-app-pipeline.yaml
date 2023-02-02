@@ -84,7 +84,8 @@ spec:
         - name: source
           workspace: workspace
     - name: git-cli
-      runAfter: buildah
+      runAfter: 
+        - buildah
       taskRef:
         kind: ClusterTask
         name: git-cli
