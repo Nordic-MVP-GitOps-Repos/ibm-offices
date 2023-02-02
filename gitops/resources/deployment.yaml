@@ -21,8 +21,8 @@ spec:
             secretName: quarkus-certificate-secret
             defaultMode: 420
       containers:
-      - name: ibmoffices
-        env:
+        - name: ibmoffices
+          env:
             - name: QUARKUS_HTTP_SSL_CERTIFICATE_FILE
               value: /var/run/kubernetes.io/secrets/ssl/tls.crt
             - name: QUARKUS_HTTP_SSL_CERTIFICATE_KEY_FILE
@@ -31,17 +31,16 @@ spec:
               value: redirect
             - name: QUARKUS_HTTP_SSL_PORT
               value: '8443'
-        image: >-
-            image-registry.openshift-image-registry.svc:5000/ibmoffices/ibmoffices:d07a26bc412bc9d837e1f325298d367639baa7c5
-
-        ports:
-          - containerPort: 8080
-            protocol: TCP
-          - containerPort: 8443
-            protocol: TCP
-          - containerPort: 8778
-            protocol: TCP
-        volumeMounts:
+          image: >-
+            image-registry.openshift-image-registry.svc:5000/ibmoffices/ibmoffices:75d87ebdbc36c0d578f86ca65c4abeed3e352fef
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+            - containerPort: 8443
+              protocol: TCP
+            - containerPort: 8778
+              protocol: TCP
+          volumeMounts:
             - name: quarkus-certificate-secret
               readOnly: true
               mountPath: /var/run/kubernetes.io/secrets/ssl
