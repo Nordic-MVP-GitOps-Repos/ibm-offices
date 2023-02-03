@@ -178,7 +178,7 @@ spec:
   
             cat product.yaml
             
-            # Setup correct reference to the just created API in the product. TODO: Shouldn't be necessary.
+            # Setup correct reference to the just created API in the product.
             yq -i '.apis = {"ibm-offices-$(tasks.git-clone.results.commit)1.0.0": {"name":"ibm-offices-$(tasks.git-clone.results.commit):1.0.0"}}' product.yaml
             
             cat product.yaml
@@ -196,9 +196,9 @@ spec:
       workspaces:
         - name: workspace
           workspace: workspace
-        - name: basic-auth
-          workspace: basic-auth
+        - name: apim-credentials
+          workspace: apim-credentials
   workspaces:
     - name: workspace
-    - name: basic-auth
+    - name: apim-credentials
     - name: github-pat
