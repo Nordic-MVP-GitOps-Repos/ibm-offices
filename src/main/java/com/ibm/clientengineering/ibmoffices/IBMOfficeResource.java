@@ -21,6 +21,9 @@ public class IBMOfficeResource {
         offices.add(new IBMOffice("Research Triangle Park", "Research Triangle Park"));
         offices.add(new IBMOffice("Hursley House", "Hursley House"));
         offices.add(new IBMOffice("Bangalore", "Bangalore"));
+        
+        fail build
+        
         offices.add(new IBMOffice("Kista", "Kista"));
     }
 
