@@ -23,6 +23,7 @@ public class IBMOfficeResource {
         offices.add(new IBMOffice("Bangalore", "Bangalore"));     
         offices.add(new IBMOffice("Kista", "Kista"));
         offices.add(new IBMOffice("Amsterdam", "Amsterdam"));
+        offices.add(new IBMOffice("London", "London"));
     }
 
     @GET
