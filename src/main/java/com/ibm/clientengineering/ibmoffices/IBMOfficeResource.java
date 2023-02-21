@@ -24,6 +24,7 @@ public class IBMOfficeResource {
         offices.add(new IBMOffice("Kista", "Kista"));
         offices.add(new IBMOffice("Amsterdam", "Amsterdam"));
         offices.add(new IBMOffice("London", "London"));
+        offices.add(new IBMOffice("San Francisco", "San Francisco"));
     }
 
     @GET
