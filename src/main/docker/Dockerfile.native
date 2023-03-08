@@ -13,12 +13,13 @@
 #
 # docker run -i --rm -p 8080:8080 quarkus/ibmoffices
 #
+#
 ###
 FROM registry.access.redhat.com/ubi8/ubi-minimal:8.6
 WORKDIR /application-code/work/
-RUN chown 1001 /work \
-    && chmod "g+rwX" /work \
-    && chown 1001:root /work
+RUN chown 1001 /application-code/work \
+    && chmod "g+rwX" /application-code/work \
+    && chown 1001:root /application-code/work
 COPY --chown=1001:root build/*-runner /application-code/work/application
 
 EXPOSE 8080
