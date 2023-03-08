@@ -20,7 +20,7 @@ WORKDIR /application-code/work/
 RUN chown 1001 /application-code/work \
     && chmod "g+rwX" /application-code/work \
     && chown 1001:root /application-code/work
-COPY --chown=1001:root build/*-runner /application-code/work/application
+COPY --chown=1001:root /application-code/build/*-runner /application-code/work/application
 
 EXPOSE 8080
 USER 1001
