@@ -1,6 +1,7 @@
 package com.ibm.clientengineering.ibmoffices;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Set;
 
@@ -29,12 +30,14 @@ public class IBMOfficeResource {
 
     @GET
     public Set<IBMOffice> list() {
+        System.out.println("Returning all offices... " + new Date());
         return offices;
     }
 
     @POST
     public Set<IBMOffice> add(IBMOffice office) {
         offices.add(office);
+        System.out.println("Adding office: " + office);
         return offices;
     }
 
