@@ -17,6 +17,7 @@ public class IBMOfficeResource {
 
     public IBMOfficeResource() {
         offices.add(new IBMOffice("Armonk", "Armonk"));
+        
         offices.add(new IBMOffice("Astor Place", "Astor Place"));
         offices.add(new IBMOffice("Austin", "Austin"));
         offices.add(new IBMOffice("Research Triangle Park", "Research Triangle Park"));
